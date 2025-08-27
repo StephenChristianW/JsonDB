@@ -32,11 +32,29 @@ JsonDB 是一个基于 JSON 文件的轻量级数据库管理系统，提供简�
    ./jsondb
    ```
 
+
    或直接运行 
 
    ```bash
    cd main
    go run main.go
+   ```
+1. GO Get：
+
+   ```bash
+   go get github.com/StephenChristianW/JsonDB@629337f
+
+   ```
+
+2. 调用代码
+   ```go
+   package main 
+   import JsonDB "github.com/StephenChristianW/JsonDB"
+   func main() {
+       ctx := JsonDB.NewDBContext()
+       manager := JsonDB.NewDBManager(ctx)
+   }
+
    ```
 
 ## 命令行界面 (CLI)
