@@ -48,11 +48,93 @@ JsonDB 是一个基于 JSON 文件的轻量级数据库管理系统，提供简�
 
 2. 调用代码
    ```go
-   package main 
-   import JsonDB "github.com/StephenChristianW/JsonDB"
+   package main
+   
+   import (
+   "fmt"
+   JsonDB "github.com/StephenChristianW/JsonDB"
+   )
+   
    func main() {
-       ctx := JsonDB.NewDBContext()
-       manager := JsonDB.NewDBManager(ctx)
+   // ----------------- 初始化 -----------------
+   ctx, err := JsonDB.NewDBContext()
+   if err != nil {
+   fmt.Println("初始化 DBContext 失败:", err)
+   return
+   }
+   manager := JsonDB.NewDBManager(ctx)
+   fmt.Println("DBManager 初始化成功")
+   
+       // ----------------- 创建数据库 -----------------
+       dbName := "testDB"
+       err = manager.CreateDB(dbName)
+       if err != nil {
+           fmt.Println("创建数据库失败:", err)
+       } else {
+           fmt.Println("数据库创建成功:", dbName)
+       }
+   
+       // ----------------- 创建集合 -----------------
+       collectionName := "users"
+       err = manager.CreateCollection(dbName, collectionName)
+       if err != nil {
+           fmt.Println("创建集合失败:", err)
+       } else {
+           fmt.Println("集合创建成功:", collectionName)
+       }
+   
+       // ----------------- 插入文档 -----------------
+       doc := map[string]interface{}{
+           "username": "yuanlao",
+           "age":      28,
+           "level":    1,
+       }
+       err = manager.InsertOne(dbName, collectionName, doc)
+       if err != nil {
+           fmt.Println("插入文档失败:", err)
+       } else {
+           fmt.Println("文档插入成功:", doc)
+       }
+   
+       // ----------------- 查询文档 -----------------
+       filter := map[string]interface{}{"username": "yuanlao"}
+       results, err := manager.Find(dbName, collectionName, filter)
+       if err != nil {
+           fmt.Println("查询文档失败:", err)
+       } else {
+           fmt.Println("查询结果:")
+           for i, r := range results {
+               fmt.Printf("文档 %d: %+v\n", i+1, r)
+           }
+       }
+   
+       // ----------------- 更新文档 -----------------
+       update := map[string]interface{}{"level": 2}
+       err = manager.UpdateOne(dbName, collectionName, filter, update)
+       if err != nil {
+           fmt.Println("更新文档失败:", err)
+       } else {
+           fmt.Println("文档更新成功")
+       }
+   
+       // ----------------- 查询更新后的文档 -----------------
+       results, _ = manager.Find(dbName, collectionName, filter)
+       fmt.Println("更新后的查询结果:")
+       for i, r := range results {
+           fmt.Printf("文档 %d: %+v\n", i+1, r)
+       }
+   
+       // ----------------- 删除文档 -----------------
+       err = manager.DeleteOne(dbName, collectionName, filter)
+       if err != nil {
+           fmt.Println("删除文档失败:", err)
+       } else {
+           fmt.Println("文档删除成功")
+       }
+   
+       // ----------------- 查询删除后的文档 -----------------
+       results, _ = manager.Find(dbName, collectionName, filter)
+       fmt.Println("删除后的查询结果:", results)
    }
 
    ```
