@@ -1,4 +1,4 @@
-module JsonDB
+module github.com/StephenChristianW/JsonDB
 
 go 1.23.0
 
