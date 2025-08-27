@@ -280,7 +280,7 @@ JsonDataBase/
 
 # 非商业使用许可 / Non-Commercial Use License
 
-版权所有 (c) 2025 StephenChristianW  
+版权所有 © 2025 StephenChristianW  
 联系方式: yuanlao1016@gmail.com
 
 ---
@@ -316,7 +316,7 @@ JsonDataBase/
 
 # Non-Commercial Use License
 
-Copyright (c) 2025 StephenChristianW  
+Copyright © 2025 StephenChristianW  
 Contact: yuanlao1016@gmail.com
 
 ---
