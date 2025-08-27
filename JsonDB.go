@@ -1,4 +1,4 @@
-package github
+package JsonDB
 
 import (
 	"encoding/json"
