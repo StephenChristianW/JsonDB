@@ -7,11 +7,36 @@ import (
 	ConfigFile "github.com/StephenChristianW/JsonDB/fileIO/configFileIO"
 	UtilsFile "github.com/StephenChristianW/JsonDB/utils/file"
 	"os"
+	"regexp"
+	"strings"
 )
 
 const (
 	dbServicePath = "JsonDB/services/dbServices.go"
 )
+
+// sanitizeName 验证并清理数据库或集合名
+func sanitizeName(name string) (string, error) {
+	name = strings.TrimSpace(name) // 去掉前后空格
+	if name == "" {
+		return "", errors.New("名称不能为空")
+	}
+
+	// 只保留字母、数字和下划线
+	re := regexp.MustCompile(`[^a-zA-Z0-9_]`)
+	name = re.ReplaceAllString(name, "")
+
+	if name == "" {
+		return "", errors.New("名称中没有合法字符")
+	}
+
+	// 不能以数字开头
+	if name[0] >= '0' && name[0] <= '9' {
+		return "", errors.New("名称不能以数字开头")
+	}
+
+	return name, nil
+}
 
 // DBService 数据库操作接口
 type DBService interface {
@@ -40,6 +65,12 @@ func writeDBError(err error, funcName string, msg string) error {
 // DBCreate 创建一个新的数据库
 // - dbName: 数据库名
 func (db *DBContext) DBCreate(dbName string) error {
+	name, err := sanitizeName(dbName)
+	if err != nil {
+		return err
+	}
+	dbName = name
+
 	funcName := "CreateDB"
 	if dbName == "index" {
 		return errors.New("数据库名不能为: index")

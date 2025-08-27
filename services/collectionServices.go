@@ -97,6 +97,12 @@ func (db *DBContext) CollectionList(dbName string) ([]string, error) {
 // CollectionCreate 在当前数据库中创建新的集合
 // - collectionName: 新集合名
 func (db *DBContext) CollectionCreate(collectionName string) error {
+
+	name, err := sanitizeName(collectionName)
+	if err != nil {
+		return err
+	}
+	collectionName = name
 	funcName := "CollectionCreate"
 
 	// 检查是否选择数据库
