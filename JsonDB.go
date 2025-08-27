@@ -1,9 +1,9 @@
-package JsonDB
+package github
 
 import (
-	"JsonDB/services"
 	"encoding/json"
 	"errors"
+	"github.com/StephenChristianW/JsonDB/services"
 )
 
 // ---------------- 高层服务 ----------------

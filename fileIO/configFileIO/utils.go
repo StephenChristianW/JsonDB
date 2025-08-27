@@ -1,12 +1,12 @@
 package configFileIO
 
 import (
-	"JsonDB/config"
-	UtilsFile "JsonDB/utils/file"
-	UtilsTime "JsonDB/utils/time"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/StephenChristianW/JsonDB/config"
+	UtilsFile "github.com/StephenChristianW/JsonDB/utils/file"
+	UtilsTime "github.com/StephenChristianW/JsonDB/utils/time"
 	"os"
 	"path/filepath"
 )

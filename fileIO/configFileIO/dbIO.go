@@ -1,9 +1,9 @@
 package configFileIO
 
 import (
-	UtilsTime "JsonDB/utils/time"
 	"errors"
 	"fmt"
+	UtilsTime "github.com/StephenChristianW/JsonDB/utils/time"
 )
 
 // ==================== 数据库操作 ====================

@@ -1,8 +1,8 @@
 package services
 
 import (
-	"JsonDB/config"
 	"errors"
+	"github.com/StephenChristianW/JsonDB/config"
 	"os"
 	"path/filepath"
 	"regexp"

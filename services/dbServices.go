@@ -1,11 +1,11 @@
 package services
 
 import (
-	"JsonDB/config"
-	"JsonDB/fileIO"
-	ConfigFile "JsonDB/fileIO/configFileIO"
-	UtilsFile "JsonDB/utils/file"
 	"errors"
+	"github.com/StephenChristianW/JsonDB/config"
+	"github.com/StephenChristianW/JsonDB/fileIO"
+	ConfigFile "github.com/StephenChristianW/JsonDB/fileIO/configFileIO"
+	UtilsFile "github.com/StephenChristianW/JsonDB/utils/file"
 	"os"
 )
 
@@ -153,7 +153,7 @@ func (db *DBContext) DBDelete(dbName string) error {
 	if dbName == "" {
 		return writeDBError(errors.New("数据库名为空"), funcName, "")
 	}
-	
+
 	// 获取数据库目录路径
 	filePath, err := db.getDBFilePath(dbName)
 	if err != nil {

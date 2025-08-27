@@ -1,8 +1,8 @@
 package services
 
 import (
-	"JsonDB/fileIO"
-	Config "JsonDB/fileIO/configFileIO"
+	"github.com/StephenChristianW/JsonDB/fileIO"
+	Config "github.com/StephenChristianW/JsonDB/fileIO/configFileIO"
 )
 
 // FieldService 字段约束 & 索引服务接口

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"JsonDB"
 	"bufio"
 	"encoding/json"
 	"fmt"
+	JsonDB "github.com/StephenChristianW/JsonDB"
 	"os"
 	"os/exec"
 	"runtime"

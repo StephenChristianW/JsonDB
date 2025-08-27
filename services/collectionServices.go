@@ -1,11 +1,11 @@
 package services
 
 import (
-	"JsonDB/fileIO"
-	ConfigFile "JsonDB/fileIO/configFileIO"
-	UtilsFile "JsonDB/utils/file"
 	"errors"
 	"fmt"
+	"github.com/StephenChristianW/JsonDB/fileIO"
+	ConfigFile "github.com/StephenChristianW/JsonDB/fileIO/configFileIO"
+	UtilsFile "github.com/StephenChristianW/JsonDB/utils/file"
 	"os"
 )
 

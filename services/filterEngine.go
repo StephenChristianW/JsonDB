@@ -1,10 +1,10 @@
 package services
 
 import (
-	UtilsFile "JsonDB/utils/file"
 	"encoding/json"
 	"errors"
 	"fmt"
+	UtilsFile "github.com/StephenChristianW/JsonDB/utils/file"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"os"
 	"regexp"

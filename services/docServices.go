@@ -6,7 +6,7 @@ import (
 	"sort"
 	"sync"
 
-	ConfigFile "JsonDB/fileIO/configFileIO"
+	ConfigFile "github.com/StephenChristianW/JsonDB/fileIO/configFileIO"
 )
 
 var JsonMu sync.RWMutex

@@ -1,9 +1,9 @@
 package fileIO
 
 import (
-	UtilsFile "JsonDB/utils/file"
 	"encoding/json"
 	"errors"
+	UtilsFile "github.com/StephenChristianW/JsonDB/utils/file"
 	"os"
 )
 

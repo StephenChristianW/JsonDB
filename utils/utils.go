@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 )
 
@@ -13,9 +13,11 @@ func ParseJSON(path string) (map[string]interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
 
-	bytes, err := ioutil.ReadAll(file)
+	bytes, err := io.ReadAll(file)
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +46,7 @@ func SaveJSON(path string, data map[string]interface{}) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(path, bytes, 0644)
+	return os.WriteFile(path, bytes, 0644)
 }
 
 // PrettyPrintJSON 美观打印 JSON
