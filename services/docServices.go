@@ -123,9 +123,15 @@ func (db *DBContext) InsertOne(doc Document) (Document, error) {
 	// 唯一字段校验
 	uniqueFields, err := ConfigFile.GetUniqueFields(db.CurrentDB, db.CurrentCollection)
 	for _, field := range uniqueFields {
-		val, _ := getNestedValue(doc, field)
+		val, okVal := getNestedValue(doc, field)
+		if !okVal {
+			continue
+		}
 		for _, d := range data {
-			v, _ := getNestedValue(d, field)
+			v, okV := getNestedValue(d, field)
+			if !okV {
+				continue
+			}
 			if fmt.Sprintf("%v", val) == fmt.Sprintf("%v", v) {
 				return nil, fmt.Errorf("唯一字段冲突: %s", field)
 			}
